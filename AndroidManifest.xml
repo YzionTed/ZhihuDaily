@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.newandbie.fake.zhihudaily"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service
+            android:name="ZhihuService"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.newandbie.fake.zhihudaily.update_latest" />
+                <action android:name="com.newandbie.fake.zhihudaily.update_splash" />
+                <action android:name="com.newandbie.fake.zhihudaily.activity_destroy" />
+                <action android:name="com.newandbie.fake.zhihudaily.disconnected" />
+                <action android:name="com.newandbie.fake.zhihudaily.connected" />
+                <action android:name="com.newandbie.fake.zhihudaily.fetch_news" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".ui.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.LatestActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <provider
+            android:name=".provider.ZhihuProvider"
+            android:authorities="com.newandbie.fake.zhihudaily.provider"
+            android:exported="false" >
+        </provider>
+    </application>
+
+</manifest>
